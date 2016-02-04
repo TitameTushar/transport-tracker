@@ -1,0 +1,41 @@
+<% provide(:title, 'Available halts on this route') %>
+<h1>Available Halts on <%= @r.route_name %></h1>
+<table class="table">
+  <tr>
+    <th>Halt Name</th>
+    <th>Bus Capacity</th>
+    <th>Bus Arrival</th>
+    <th>Bus Departure</th>
+    <% if current_user.job_type == "admin"  %>
+    <th>Remove From Route</th>
+    <% end %>
+    <% if current_user.job_type != "Driver"  %>
+    <th>Select</th>
+    <% end %>
+  </tr>
+ 
+  <% @r.halts.each do |halt| %>
+    <tr>
+      <td><%= halt.halt_name %></td>
+      <td><% if !(halt.bus.nil?) %>
+        <%= halt.bus.bus_capacity %>
+        <% else %>
+        No Bus Assigned
+      <% end %>
+      <td><%= halt.bus_arrivetime %></td>
+      <td><%= halt.bus_departtime %></td>
+       <% if current_user.job_type == "admin"  %>
+        <td><%= link_to "<i class='icon-remove icon-large'></i>".html_safe, remove_route_halt_path(@r,halt) %> </td>
+       <% end %>
+       <% if current_user.job_type != "Driver"  %>
+       <% if current_user.halt != halt  %>
+       <td><%= link_to 'Register', register_route_halt_path(@r,halt) %></td>
+       <% else %>
+       <td>Registered</td>
+       <% end %>
+       <% end %>
+    </tr>
+  <% end %>
+</table>
+<hr>
+<%= link_to "My Menu", menu_user_path(current_user) %>

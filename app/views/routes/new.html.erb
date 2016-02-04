@@ -1,0 +1,21 @@
+<% provide(:title, 'Add New Route') %>
+<h1>Add New Route</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@route) do |f| %>
+    <%= render 'shared/error_messages_for_routes' %>
+
+      <%= f.label :route_name %>
+      <%= f.text_field :route_name %>
+
+     <%= f.label :Select_Source %>
+     <%= options_from_collection_for_select(Halt.all, :halt_name, :halt_name) %>
+     <%= collection_select(:route, :source, Halt.all, :halt_name, :halt_name) %> 
+
+      <%= f.label :destination %>
+      <%= f.text_field :destination %>
+
+      <%= f.submit "Add Route", class: "btn btn-small btn-primary" %>
+    <% end %>
+  </div>
+</div>

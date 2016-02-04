@@ -1,0 +1,8 @@
+<% provide(:title, @route.route_name) %>
+<h1><u><font face="Monotype corsiva" color= "Blue"><%= @route.route_name %></font></u></h1><br>
+  <br>
+  <%= render "buses/bus_list" %>
+  <hr>
+  <%= link_to "Add New Bus", new_route_bus_path(@route) %>
+ 
+

@@ -1,5 +1,12 @@
 @import "bootstrap";
 
+#map img { 
+  max-width: none;
+}
+#map label { 
+  width: auto; display:inline; 
+} 
+
 /* universal */
 
 html {
@@ -8,6 +15,9 @@ html {
 
 body {
   padding-top: 60px;
+  background: url('designed.jpg') no-repeat center center fixed;
+  a-color: red;
+  font-color: red;
 }
 
 section {
@@ -37,6 +47,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: Black;
 }
 
 h2 {
@@ -44,8 +55,8 @@ h2 {
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
-  font-weight: normal;
-  color: #999;
+  font-weight: bold;
+  color: Black;
 }
 
 p {
@@ -53,14 +64,15 @@ p {
   line-height: 1.7em;
 }
 
+
 /* header */
 
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 1.5em;
   color: #fff;
-  text-transform: uppercase;
+  text-transform: bold;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
@@ -70,6 +82,27 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+#hlink {
+  float: right;
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: red;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 11px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#hlink:hover {
+  color: green;
+  text-decoration: none;
+}
+
+header a {
+  color: red;
 }
 
 /* footer */
@@ -82,7 +115,7 @@ footer {
 }
 
 footer a {
-  color: #555;
+  color: Red;
 }
 
 footer a:hover {
@@ -105,7 +138,7 @@ footer ul li {
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$grayMediumLight: black;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;

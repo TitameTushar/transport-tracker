@@ -1,0 +1,47 @@
+<% provide(:title, 'All Available buses') %>
+<h1>All Available Buses</h1>
+<table class="table">
+  <tr>
+    <th>BUS NO</th>
+    <th>CAPACITY</th>
+    <th>DRIVER</th>
+    <th>ROUTE</th>
+    <% if current_user.job_type == "admin"  %>
+    <th>EDIT</th>
+    <th>DESTROY</th>
+    <th>Assign Driver</th>
+    <% end %>
+  </tr>
+ 
+  <% @buses.each do |bus| %>
+    <tr>
+      <td><%= bus.bus_no %></td>
+      <td><%= bus.bus_capacity %></td>
+      <td>
+        <% if !(bus.bus_driver.nil?) %>
+        <%= bus.bus_driver %>
+         <% else %>
+         Not Assigned
+         <% end %>
+      </td>
+      <td>
+         <% if !(bus.route.nil?) %>
+        <%= bus.route.route_name %>
+         <% else %>
+         Not On-Route
+         <% end %>
+      </td>
+      <% if current_user.job_type == "admin"  %>
+       <td><%= link_to 'Edit', edit_bus_path(bus) %></td>
+       <td><%= link_to 'Destroy', bus_path(bus),
+                    method: :delete, data: { confirm: 'This bus and all its attributes will be deleted.Are you sure?' } %></td>
+       <td><%= link_to 'Select', drivers_bus_user_path(bus) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "My Menu", menu_user_path(current_user) %>
+<hr>
+<% if current_user.job_type == "admin"  %>
+<%= render 'buses/form' %>
+<% end %>

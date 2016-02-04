@@ -1,0 +1,21 @@
+<h1>Select Driver For - <%= @bus.bus_no %></h1>
+<table class="table">
+  <tr>
+    <td>Name</td>
+    <td>Alloted Bus</td>
+    <td>Assign</td>
+  </tr>
+  <% @drivers.each do |driver| %>
+  <tr>
+    <td><%= driver.username %></td>
+    <% if (driver.bus.nil?) %>
+    <td>Not Assigned</td>
+    <% else %>
+    <td><%= driver.bus.bus_no %></td>
+    <% end %>
+    <td><%= link_to 'Select', assign_driver_bus_user_path(driver,@bus) %></td>
+  </tr>
+  <% end %>
+</table>
+
+

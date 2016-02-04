@@ -1,16 +1,26 @@
- <%# provide(:title, 'Home') %>
-  	<div class="center hero-unit">
-	<h2>BUS SCHEDULER</h2>
-  <h3>Welcome to</h3>
-   <h3><font face="Comic sans ms" color= "Blue">Dynamic Tracking, Scheduling and Management System For Private Buses</font></h3>
-   <h2>
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-  </h2>
+ <% provide(:title, 'Home') %>
+  	<div class="center">
+  <h3>Welcome To</h3>
+   <h3><font face="Comic sans ms" color= "Blue">Dynamic Tracking System For Your Bus</font></h3>
+  <br><hr>
+  <div class="row">
+  	<div class="span4 offset4">
+<h1>Sign In</h1>
+    <%= form_for(:session, url: sessions_path) do |f| %>
 
-  <%= link_to "Sign up!", signup_path , class: "btn btn-large btn-primary" %>
+      <font  color="Red">
+        <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign In", class: "btn btn-large btn-primary" %>
+    
+    <% end %>
+
+    <p>New user? <%= link_to "Sign Up!", signup_path %></p></font>
 </div>
-<p align= "center">
-<%= link_to image_tag("rails.png", alt: "Rails",), 'http://rubyonrails.org/' %></p>
+</div>
+</div>
 <br>
-<marquee>
-<%= image_tag "bus.jpg", :size=> "160x100" %></marquee>

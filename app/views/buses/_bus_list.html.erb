@@ -1,0 +1,36 @@
+<% provide(:title, 'Assign Available Buses') %>
+<h1>Assign Available Bus For <%= @route.route_name %></h1>
+<table class="table">
+  <tr>
+    <th>BUS NO</th>
+    <th>CAPACITY</th>
+    <th>DRIVER</th>
+    <th>CURRENT ROUTE</th>
+    <% if current_user.job_type == "admin"  %>
+    <th>Assign</th>
+    <% end %>
+  </tr>
+  <% @buses.each do |bus| %>
+    <tr>
+      <td><%= bus.bus_no %></td>
+      <td><%= bus.bus_capacity %></td>
+      <td>
+        <% if !(bus.bus_driver.nil?) %>
+        <%= bus.bus_driver %>
+         <% else %>
+         Not Assigned
+         <% end %>
+      </td>
+      <td>
+         <% if !(bus.route.nil?) %>
+        <%= bus.route.route_name %>
+         <% else %>
+         Not On-Route
+         <% end %>
+      </td>
+      <% if current_user.job_type == "admin"  %>
+      <td><%= link_to 'Assign', assign_bus_path(@route,bus) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

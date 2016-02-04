@@ -1,0 +1,17 @@
+<% provide(:title, 'Alerts') %>
+<h1><font face="Arial" color="Red" >Alerts</font></h1>
+<% if (current_user.job_type == "admin") %>
+<% @routes.each do |route| %>
+<font face="Arial" size="5" >
+	<%= route.route %>: </font><font face="Arial" color="Blue" size="4" >
+	<% if (!(route.alert == "") && !(route.alert.nil?)) %>
+	<%= route.alert %>
+	<% else %>
+	No Alert
+    <% end %>
+</font><hr>
+<% end %>
+<% else %>
+<font face="Arial" size="5" >
+	<%= @route.route %>: </font><font face="Arial" color="Blue" size="4" ><%= @route.alert %></font><hr>
+<% end %>

@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="span4">
+     <h4>
+     <%= image_tag "routes.jpg", :size=> "150x150", :class=> "img-circle" %><%= link_to "Available Routes", routes_path %></h4>
+    </div>
+     <br><br><br>
+    <div class="span4 offset6">
+      <h4><%= image_tag "buses.jpg", :size=> "150x150", :class=> "img-circle" %><%= link_to "Available Buses", buses_path %><h4>
+    </div>
+     <br><br><br>
+</div>
+<div class="row">
+	<div class="span4">
+      <% if @user.job_type == "admin"  %>
+        <h4><%= image_tag "halts.jpg", :size=> "150x150", :class=> "img-circle" %><%= link_to "All Halts", halts_path %></h4>
+    </div>
+        <br><br><br>
+    <div class="span4 offset6">
+        <h4><%= image_tag "Desert_road.jpg", :size=> "150x150", :class=> "img-circle" %><%= link_to "Add New Route", new_route_path %></h4>
+        </div>
+        <% end %>
+        <br>
+</div>

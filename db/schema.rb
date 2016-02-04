@@ -11,39 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207131658) do
+ActiveRecord::Schema.define(version: 20140426174201) do
 
   create_table "buses", force: true do |t|
-    t.integer  "bus_id"
     t.integer  "bus_capacity"
-    t.string   "bus_route"
     t.string   "bus_driver"
-    t.time     "bus_arrivetime"
-    t.time     "bus_departtime"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "drivers", force: true do |t|
-    t.string   "driver_licence"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "employees", force: true do |t|
-    t.string   "employee_halt"
-    t.time     "employee_arrivation"
-    t.time     "employee_departure"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "route_id"
+    t.string   "bus_no"
   end
 
   create_table "halts", force: true do |t|
-    t.integer  "halt_id"
-    t.integer  "bus_id"
     t.string   "halt_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bus_id"
+    t.time     "bus_arrivetime"
+    t.time     "bus_departtime"
+    t.integer  "route_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "title"
+    t.text     "description"
+  end
+
+  create_table "positions", force: true do |t|
+    t.string   "route"
+    t.string   "current_pos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "alert"
+  end
+
+  create_table "routes", force: true do |t|
+    t.string   "route_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "source"
+    t.string   "destination"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "s_lat"
+    t.float    "s_long"
+    t.text     "alert"
   end
 
   create_table "users", force: true do |t|
@@ -53,11 +64,15 @@ ActiveRecord::Schema.define(version: 20140207131658) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           default: false
-    t.integer  "bus_id"
-    t.integer  "halt_id"
     t.text     "address"
     t.string   "job_type"
+    t.integer  "bus_id"
+    t.integer  "route_id"
+    t.integer  "halt_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

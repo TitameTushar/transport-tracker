@@ -1,0 +1,33 @@
+<% provide(:title, 'Edit Halt') %>
+<h1><font face="monotype corsiva">Edit Halt For route -- <%= @halt.route_id %></font></h1>
+<div class="row">
+ <div class="span6 offset3">
+    <%= form_for(@halt) do |f| %>
+    <%#= render 'shared/error_messages_for_halts' %>
+
+      <%= f.label :halt_name %>
+      <%= f.text_field :halt_name %>
+
+       <%= f.label :bus_arrivetime %>
+      <%= f.text_field :bus_arrivetime %>
+
+      <%= f.label :bus_departtime %>
+      <%= f.text_field :bus_departtime %>
+
+      
+      <%#= f.label :latitude %>
+      <%#= f.text_field :latitude %>
+  
+      <%#= f.label :longitude %>
+      <%#= f.text_field :longitude %>
+  
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+  
+      <%#= f.label :title %>
+      <%#= f.text_field :title %>
+
+      <%= f.submit "Edit Halt", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

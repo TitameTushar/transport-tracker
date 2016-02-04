@@ -1,0 +1,41 @@
+<% provide(:title, @bus.id) %>
+<h3><font face="monotype corsiva" color= "blue"><% if !(@bus.route.nil?) %>Bus On <%= @route.route_name %> is:<% end %></h3></font>
+  <br>
+	<table class="table">
+  <tr>
+    <th>ROUTE ID</th>
+    <th>ROUTE</th>
+    <th>BUS</th>
+    <th>CAPACITY</th>
+    <th>DRIVER</th>
+  </tr>
+    <tr>
+       <td>
+        <% if !(@bus.route.nil?) %>
+        <%= @bus.route_id %>
+        <% else %>
+        Not Assigned
+        <% end %>
+      </td>
+        <td>
+           <% if !(@bus.route.nil?) %>
+        <%= @route.route_name %>
+        <% else %>
+        Not Assigned
+        <% end %>
+        </td>
+      <td><%= @bus.bus_no %></td>
+      <td><%= @bus.bus_capacity %></td>
+      <td><%= @bus.bus_driver %></td>
+   </tr>
+</table><br>
+<hr>
+ <br>
+ <% if !(@bus.route.nil?) %>
+  <%= render "halts/form" %>
+  <% end %>
+  <hr>
+  <%= link_to "My Menu", menu_user_path(current_user) %>
+
+
+

@@ -1,0 +1,2 @@
+class EmployeeViewsController < ApplicationController
+end

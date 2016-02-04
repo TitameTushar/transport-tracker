@@ -11,13 +11,23 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
+       <%= f.label :job_type %>
+      <%= f.select :job_type, [["Employee", :Employee],["Driver", :Driver]] %>
+    
+       <%= f.label :address %>
+      <%= f.text_field :address %>
+
+      <%#= f.label :Select_Bus %>
+      <%#= options_from_collection_for_select(Bus.all, :id, :id) %>
+     <%#= collection_select(:user, :bus_id, Bus.all, :id, :id) %>
+      
       <%= f.label :password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Create my account", class: "btn btn-small btn-primary" %>
     <% end %>
   </div>
 </div>

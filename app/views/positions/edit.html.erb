@@ -1,0 +1,17 @@
+<% provide(:title, 'Broadcast Bus Position') %>
+<h1><font face="monotype corsiva">Broadcast Bus Position</font></h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for (@pos) do |p| %>
+    <%#= render 'shared/error_messages_for_buses' %>
+      <%= p.label :Select_Position %>
+     <%= options_from_collection_for_select(@halts, :halt_name, :halt_name) %>
+     <%= collection_select(:position, :current_pos, @halts, :halt_name, :halt_name) %>
+     
+     <%= p.label :alert %>
+      <%= p.text_field :alert %>
+     
+      <%= p.submit "Broadcast", class: "btn btn-small btn-primary" %>
+    <% end %>
+  </div>
+</div>

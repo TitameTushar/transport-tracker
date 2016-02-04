@@ -1,0 +1,38 @@
+<% provide(:title, 'All Available Routes') %>
+<h1>All Available Routes</h1>
+<table class="table">
+  <tr>
+    <th>Route Name</th>
+     <th>Bus</th>
+    <th>View Halts</th>
+    <% if current_user.job_type == "admin"  %>
+    <th>EDIT</th>
+    <th>DESTROY</th>
+     <th>Assign Bus</th>
+    <th>Assign Halts</th>
+    <% end %>
+  </tr>
+ 
+  <% @routes.each do |r| %>
+    <tr>
+      <td><%= r.route_name %></td>
+      <td>
+        <% if !(r.bus.nil?) %>
+        <%= r.bus.bus_no %>
+        <% else %>
+        Not Assigned
+        <% end %>
+      </td>
+      <td><%= link_to 'View Halts', display_route_halts_path(r) %></td>
+      <% if current_user.job_type == "admin"  %>
+       <td><%= link_to 'Edit', edit_route_path(r) %></td>
+       <td><%= link_to "<i class='icon-trash icon-large'></i>".html_safe, route_path(r),
+                    method: :delete, data: { confirm: 'This Route And All Its Halts Will Be Deleted!' } %></td>
+       <td><%= link_to 'Assign bus', route_path(r) %></td>             
+      <td><%= link_to "<i class='icon-plus-sign icon-large'></i>".html_safe, route_halts_path(r) %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table><br>
+<%= link_to "My Menu", menu_user_path(current_user) %>

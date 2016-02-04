@@ -1,0 +1,19 @@
+<% provide(:title, 'Add Bus') %>
+<h1><font face="monotype corsiva">Add New Bus For <%= @route.route_name =%></font></h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for([@route, @route.build_bus]) do |f| %>
+    <%#= render 'shared/error_messages_for_buses' %>
+
+      <%= f.label :bus_no %>
+      <%= f.text_field :bus_no %>
+
+
+      <%= f.label :bus_capacity %>
+      <%= f.text_field :bus_capacity %>
+
+
+      <%= f.submit "Add Bus", class: "btn btn-small btn-primary" %>
+    <% end %>
+  </div>
+</div>

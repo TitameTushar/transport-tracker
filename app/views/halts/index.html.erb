@@ -1,0 +1,61 @@
+<% provide(:title, 'All Available halts') %>
+<% if !(@route.nil?) %>
+<h1>Select Halt For <%= @route.route_name %></h1>
+<% else %>
+<h1>All Available Halts</h1>
+<% end %>
+<table class="table">
+  <tr>
+    <th>Route Name</th>
+    <th>Halt Name</th>
+    <th>Bus Capacity</th>
+    <th>Bus Arrival</th>
+    <th>Bus Departure</th>
+    <% if current_user.job_type == "admin"  %>
+    <% if (@route.nil?) %>
+    <th>EDIT</th>
+    <th>DESTROY</th>
+    <% else %>
+    <th>Select</th>
+    <% end %>
+    <% end %>
+  </tr>
+ 
+  <% @halts.each do |halt| %>
+    <tr>
+      <td>
+        <% if !(halt.route.nil?) %>
+        <%= halt.route.route_name %>
+        <% else %>
+        Not on any route
+      <% end %>
+      </td>
+      <td><%= halt.halt_name %></td>
+      <td><% if !(halt.bus.nil?) %>
+        <%= halt.bus.bus_capacity %>
+        <% else %>
+        No Bus Assigned
+      <% end %>
+    </td>
+      <td><%= halt.bus_arrivetime %></td>
+      <td><%= halt.bus_departtime %></td>
+      <% if current_user.job_type == "admin"  %>
+      <% if (@route.nil?) %>
+       <td><%= link_to 'Edit', edit_halt_path(halt) %></td>
+       <td><%= link_to 'Destroy', halt_path(halt),
+                    method: :delete, data: { confirm: 'This halt and all its attributes will be deleted.Are you sure?' } %></td>
+      <% else %>
+       <td><%= link_to 'Select', assign_halt_route_halt_path(@route,halt) %></td>
+      <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<hr>
+<%= link_to "My Menu", menu_user_path(current_user) %>
+<% if !(@route.nil?) %>
+<hr>
+<%= render "halts/form" %>
+<% else %>
+|<%= link_to "Add New Halt", new_halt_path %>
+<% end %>

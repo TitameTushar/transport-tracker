@@ -1,0 +1,40 @@
+<% provide(:title, @halt.id) %>
+<h3><font face="monotype corsiva" color= "blue">Following halt is added on <% if !(@route.nil?) %>
+  <%=@route.route_name %>:<% end %></h3></font>
+  <br>
+	<table class="table">
+  <tr>
+    <th>Route Name</th>
+    <th>Halt Name</th>
+    <th>Bus</th>
+    <th>Bus Arrival Time</th>
+    <th>Bus Departure Time</th>
+  </tr>
+    <tr>
+       <td>
+        <% if !(@route.nil?) %>
+        <%= @route.route_name %>
+        <% else %>
+        Not Assigned
+        <% end %>
+        </td>
+        <td><%= @halt.halt_name %></td>
+        <td>
+          <% if !(@route.nil?) %>
+          <%= @bus.bus_no %>
+        <% else %>
+        Not Assigned
+        <% end %>
+        </td>
+      <td><%= @halt.bus_arrivetime %></td>
+      <td><%= @halt.bus_departtime %></td>  
+   </tr>
+</table><br>
+<% if !(@route.nil?) %>
+<%= render @route.halts %>
+<hr>
+<br>
+  <%= render "halts/form" %>
+  <% end %>
+<hr>
+<%= link_to "Back To Routes", routes_path %>
