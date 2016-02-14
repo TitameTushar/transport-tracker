@@ -161,7 +161,7 @@ $grayMediumLight: black;
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid #EEEEEE;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -208,9 +208,9 @@ input {
 }
 
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
-  }
+  @extend .control-group !optional;
+  @extend .error !optional;
+}
 
   /* Users index */
 
@@ -220,9 +220,9 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid #EEEEEE;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid #EEEEEE;
     }
   }
 }

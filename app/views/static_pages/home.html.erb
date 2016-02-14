@@ -6,20 +6,20 @@
   <div class="row">
   	<div class="span4 offset4">
 <h1>Sign In</h1>
-    <%= form_for(:session, url: sessions_path) do |f| %>
+    <%= form_for(:session, url: new_user_session_path) do |f| %>
 
       <font  color="Red">
         <%= f.label :email %>
-      <%= f.text_field :email %>
+        <%= f.text_field :email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
 
-      <%= f.submit "Sign In", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Sign In", class: "btn btn-large btn-primary" %>
     
     <% end %>
 
-    <p>New user? <%= link_to "Sign Up!", signup_path %></p></font>
+    <p>New user? <%= link_to "Sign Up!", new_user_registration_path %></p></font>
 </div>
 </div>
 </div>

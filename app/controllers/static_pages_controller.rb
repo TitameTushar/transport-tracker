@@ -5,15 +5,10 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
-  def home
-  	if signed_in? 
-   		redirect_to current_user
-   	else
-   	end
-
+  def home 
+   	redirect_to(current_user) if user_signed_in?
   end
 
   def help
   end
-  
 end

@@ -1,4 +1,6 @@
 Project::Application.routes.draw do
+  devise_for :users
+
   match 'routes/:route_id/display' => 'halts#display', via: :get, as: :display_route_halts
   match 'routes/:route_id/halts/:id/register' => 'halts#register', via: [:get,:post], as: :register_route_halt
   match 'routes/:route_id/halts/:id/remove' => 'halts#remove', via: [:get,:post], as: :remove_route_halt
@@ -8,24 +10,31 @@ Project::Application.routes.draw do
   match 'buses/:bus_id/users/drivers' => 'users#drivers', via: :get, as: :drivers_bus_user
   match 'users/:user_id/buses/:bus_id/assign_driver' => 'users#assign_driver', via: :get, as: :assign_driver_bus_user
   match 'users/alert' => 'users#alert', via: :get, as: :alert_user
+  
   resources :positions, only: [:edit, :update, :show, :destroy]
+  
   resources :buses
+  
   resources :halts
+  
   resources :users do
-     resources :positions, only: [:show]
+    resources :positions, only: [:show]
     resources :buses
   end
+
   resources :routes do
     resources :buses
     resources :halts do 
       resources :buses
     end
   end
-  resources :sessions, only: [:new, :create, :destroy]
+
+  # resources :sessions, only: [:new, :create, :destroy]
+  
   root  'static_pages#home'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  # match '/signup',  to: 'users#new',            via: 'get'
+  # match '/signin',  to: 'sessions#new',         via: 'get'
+  # match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

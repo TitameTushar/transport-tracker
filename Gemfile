@@ -12,6 +12,9 @@ gem 'byebug', group: [:development, :test]
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails'
 
+# for user authentication
+gem 'devise'
+
 gem 'geocoder'
 gem 'gmaps4rails'
 
